@@ -1,0 +1,108 @@
+export async function fetchNifty50Stocks(): Promise<LiveStock[]> {
+  let finalStocks: LiveStock[] = [];
+
+  /* ── 1. NSE equityStockIndices ───────────────────────── */
+  try {
+    const cookie = await getNSECookie();
+    const res = await axios.get(
+      "https://www.nseindia.com/api/equity-stockIndices",
+      {
+        params: { index: "NIFTY 50" },
+        headers: { ...NSE_HEADERS, Cookie: cookie },
+        timeout: 10000,
+      }
+    );
+    const rows: any[] = res.data?.data || [];
+    if (rows.length >= 10) {
+      finalStocks = rows.filter(r => r.symbol).map(r => {
+        const sym  = String(r.symbol);
+        const info = STOCK_META[sym] || { name: sym, sector: "Unknown", weight: 0 };
+        const p    = +parseFloat(r.lastPrice).toFixed(2);
+        const prev = +parseFloat(r.previousClose || p).toFixed(2);
+        return {
+          symbol: sym, name: info.name, sector: info.sector, weight: info.weight,
+          price: p,
+          change:        +parseFloat(r.change || (p - prev)).toFixed(2),
+          changePercent: +parseFloat(r.pChange || 0).toFixed(2),
+          open:          +parseFloat(r.open || p).toFixed(2),
+          high:          +parseFloat(r.dayHigh || p).toFixed(2),
+          low:           +parseFloat(r.dayLow  || p).toFixed(2),
+          previousClose: prev,
+          volume:        parseInt(r.totalTradedVolume || r.volume || r.totalTradedQty || 0),
+          vwap:          +parseFloat(r.vwap || r.pPrice || p).toFixed(2),
+          marketCap:     parseFloat(r.ffmc || r.marketCap || 0) * 1e7,
+          fiftyTwoWeekHigh: +parseFloat(r.yearHigh || r.fiftyTwoWeekHigh || p * 1.25).toFixed(2),
+          fiftyTwoWeekLow:  +parseFloat(r.yearLow  || r.fiftyTwoWeekLow  || p * 0.75).toFixed(2),
+          series:        r.series || "EQ",
+          lastUpdateTime: r.lastUpdateTime || new Date().toLocaleTimeString("en-IN"),
+          totalTradedValue: parseFloat(r.totalTradedValue || r.totalTradedValueCr || r.value || 0) / 100, 
+          pe: (parseFloat(r.pe || r.peRatio || r.priceToEarnings) || null),
+          pb: (parseFloat(r.pb || r.pbRatio || r.priceToBook) || null),
+          ffmc: parseFloat(r.ffmc || 0),
+          avgVolume: (parseInt(r.totalTradedVolume || r.volume || r.totalTradedQty) || null), 
+          eps: (parseFloat(r.eps) || null),
+          dividendYield: (parseFloat(r.dividendYield || r.divYield) || null),
+          beta: (parseFloat(r.beta) || null),
+        } as LiveStock;
+      });
+      if (finalStocks.length >= 10) return finalStocks;
+    }
+  } catch (e) {
+    console.warn("[NSE stocks]", (e as Error).message?.slice(0, 60));
+  }
+
+  /* ── 2. Yahoo Finance bulk quotes ───────────────────── */
+  try {
+    const syms   = Object.keys(STOCK_META).map(s => `${s}.NS`);
+    const yahooResults: LiveStock[] = [];
+    for (let i = 0; i < syms.length; i += 20) {
+      const chunk = syms.slice(i, i + 20);
+      const res = await axios.get(
+        "https://query1.finance.yahoo.com/v7/finance/quote",
+        { 
+          params: { symbols: chunk.join(",") }, 
+          headers: YAHOO_HEADERS, 
+          timeout: 10000 
+        }
+      );
+      const quotes: any[] = res.data.quoteResponse?.result || [];
+      for (const q of quotes) {
+        const sym  = q.symbol.replace(".NS", "");
+        const info = STOCK_META[sym] || { name: sym, sector: "Unknown", weight: 0 };
+        const p    = +(q.regularMarketPrice || 0).toFixed(2);
+        const prev = +(q.regularMarketPreviousClose || p).toFixed(2);
+        yahooResults.push({
+          symbol: sym, name: info.name, sector: info.sector, weight: info.weight,
+          price: p,
+          change:        +(q.regularMarketChange || 0).toFixed(2),
+          changePercent: +(q.regularMarketChangePercent || 0).toFixed(2),
+          open:          +(q.regularMarketOpen    || p).toFixed(2),
+          high:          +(q.regularMarketDayHigh || p).toFixed(2),
+          low:           +(q.regularMarketDayLow  || p).toFixed(2),
+          previousClose: prev,
+          volume:        q.regularMarketVolume || 0,
+          vwap:          p, marketCap: q.marketCap || 0,
+          fiftyTwoWeekHigh: +(q.fiftyTwoWeekHigh || p * 1.25).toFixed(2),
+          fiftyTwoWeekLow:  +(q.fiftyTwoWeekLow  || p * 0.75).toFixed(2),
+          series: "EQ",
+          lastUpdateTime: new Date().toLocaleTimeString("en-IN"),
+          pe: q.trailingPE || null,
+          pb: q.priceToBook || null,
+          eps: q.trailingEps || null,
+          dividendYield: q.dividendYield ? +(q.dividendYield).toFixed(2) : null,
+          beta: q.beta ? +(q.beta).toFixed(2) : null,
+          avgVolume: q.averageDailyVolume3Month || null,
+          totalTradedValue: (q.regularMarketVolume || 0) * p / 1e7, // estimate
+          ffmc: (q.marketCap || 0) / 1e7,
+        });
+      }
+      if (i + 20 < syms.length) await new Promise(r => setTimeout(r, 50));
+    }
+    if (yahooResults.length >= 10) return yahooResults;
+  } catch (e) {
+    console.warn("[Yahoo stocks]", (e as Error).message?.slice(0, 60));
+  }
+
+  /* ── 3. Mock ─────────────────────────────────────────── */
+  return mockStocks();
+}
