@@ -209,9 +209,9 @@ export default function IndicesPage() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center text-[8px] font-mono text-text-muted mt-1 px-0.5">
-                      <span>D: <span className="text-accent-red">{fmtN(idx.low,0)}</span> - <span className="text-accent-green">{fmtN(idx.high,0)}</span></span>
-                      <span>52W: <span className="text-accent-red">{fmtN(idx.yearLow,0)}</span> - <span className="text-accent-green">{fmtN(idx.yearHigh,0)}</span></span>
+                    <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center text-[9px] font-mono text-text-muted mt-2 gap-1 sm:gap-2">
+                      <span className="shrink-0">D: <span className="text-accent-red font-600">{fmtN(idx.low,0)}</span> - <span className="text-accent-green font-600">{fmtN(idx.high,0)}</span></span>
+                      <span className="shrink-0 opacity-80 sm:opacity-100">52W: <span className="text-accent-red font-600">{fmtN(idx.yearLow,0)}</span> - <span className="text-accent-green font-600">{fmtN(idx.yearHigh,0)}</span></span>
                     </div>
                     <div className="mt-1 h-1 bg-bg-elevated rounded-full overflow-hidden relative">
                       <div className="absolute inset-0 bg-gradient-to-r from-accent-red via-accent-amber to-accent-green opacity-30 rounded-full"/>
@@ -438,7 +438,7 @@ function IndexDetailPanel({ index }: { index: IndexRow }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 mb-3">
           {[
             { label:"Prev Close",   v:fmtN(detail?.previousClose ?? index.previousClose) },
             { label:"Open",         v:fmtN(detail?.open ?? index.open) },
@@ -450,9 +450,9 @@ function IndexDetailPanel({ index }: { index: IndexRow }) {
             { label:"Val (Cr)",     v:formatCurrency(detail?.totalTradedValue ?? index.totalTradedValue) },
             { label:"FFM Cap (L Cr)",v:detail?.ffmc_sum ? fmtN(detail.ffmc_sum) : index.ffmc_sum ? fmtN(index.ffmc_sum) : "—" },
           ].map(({ label, v, c }) => (
-            <div key={label} className="bg-bg-elevated rounded-xl px-3 py-2">
-              <p className="text-text-muted text-[9px] font-mono uppercase mt-0.5">{label}</p>
-              <p className={cn("font-mono font-600 text-xs tabular-nums mt-0.5",
+            <div key={label} className="bg-bg-elevated rounded-xl px-2.5 py-1.5 min-w-0">
+              <p className="text-text-muted text-[8px] font-mono uppercase truncate opacity-70">{label}</p>
+              <p className={cn("font-mono font-700 text-[11px] tabular-nums truncate",
                 c === "green" ? "text-accent-green" : c === "red" ? "text-accent-red" : "text-text-primary")}>
                 {v}
               </p>

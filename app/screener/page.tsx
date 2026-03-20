@@ -62,18 +62,18 @@ export default function ScreenerPage() {
         <p className="text-text-muted text-sm mt-1">Filter and discover Nifty 50 stocks by criteria</p>
       </div>
 
-      {/* Screen selector */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+      {/* Screen selector - Scroller for mobile */}
+      <div className="flex overflow-x-auto no-scrollbar gap-2 pb-1 -mx-2 px-2 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {SCREENS.map(s => {
           const Icon = s.icon;
           return (
             <button key={s.id} onClick={() => setScreen(s.id)}
-              className={cn("flex items-start gap-2.5 p-3 rounded-xl border text-left transition-all",
+              className={cn("flex flex-shrink-0 items-start gap-2.5 p-3 rounded-xl border text-left transition-all min-w-[140px] sm:min-w-0",
                 screen === s.id ? "bg-accent-blue/10 border-accent-blue/40 text-text-primary" : "bg-bg-card border-border-subtle text-text-secondary hover:border-border-default hover:bg-bg-elevated")}>
               <Icon size={14} className={screen===s.id?"text-accent-blue":"text-text-muted"} />
-              <div>
-                <div className="text-xs font-600">{s.label}</div>
-                <div className="text-[10px] text-text-muted mt-0.5 hidden sm:block">{s.desc}</div>
+              <div className="min-w-0">
+                <div className="text-xs font-600 truncate">{s.label}</div>
+                <div className="text-[10px] text-text-muted mt-0.5 hidden sm:block truncate">{s.desc}</div>
               </div>
             </button>
           );

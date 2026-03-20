@@ -180,9 +180,9 @@ export default function IndexHeroCard() {
       {/* Info Grid */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3 border-t border-border-subtle/30 pt-6">
         {stats.map(({l,v,c})=>(
-          <div key={l} className="group flex flex-col">
-            <span className="text-text-muted text-[10px] font-mono font-800 uppercase tracking-tighter opacity-60 group-hover:opacity-100 transition-opacity mb-1">{l}</span>
-            <span className={cn("font-mono font-900 text-[13px] tabular-nums",
+          <div key={l} className="group flex flex-col min-w-0">
+            <span className="text-text-muted text-[9px] font-mono font-800 uppercase tracking-tighter opacity-60 group-hover:opacity-100 transition-opacity mb-1 truncate">{l}</span>
+            <span className={cn("font-mono font-900 text-[11px] sm:text-[13px] tabular-nums truncate",
               c==="green"?"text-accent-green":c==="red"?"text-accent-red":"text-text-primary")}>
               {v}
             </span>
