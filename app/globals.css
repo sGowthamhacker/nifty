@@ -105,13 +105,13 @@ body {
 
 /* Loading skeleton */
 @keyframes shimmer {
-  0% { background-position: -468px 0; }
-  100% { background-position: 468px 0; }
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
 }
 
 .skeleton {
   background: linear-gradient(to right, #1A1D27 4%, #252840 25%, #1A1D27 36%);
-  background-size: 1000px 100%;
+  background-size: 200% 100%;
   animation: shimmer 1.5s infinite linear;
 }
 

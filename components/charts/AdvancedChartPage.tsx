@@ -1019,7 +1019,7 @@ const StockGrid = memo(({ stocks, mainSymbol, onSelect, onAdd, loadingSet }: {
           return (
             <div key={s.symbol}
               style={isMain ? { borderColor: "#3B82F6" } : isOverlay ? { borderColor: `${overlayColor}60` } : {}}
-              className={cn("relative p-3 rounded-xl border cursor-pointer transition-all group hover:border-accent-blue/40 active:scale-95",
+              className={cn("relative p-3 rounded-xl border cursor-pointer transition-all group hover:border-accent-blue/40 active:scale-95 overflow-hidden",
                 isMain ? "border-accent-blue/50 bg-accent-blue/8" : isOverlay ? "border-opacity-60 bg-bg-elevated/20" : "border-border-subtle/50 bg-bg-secondary/20")}
               onClick={() => onSelect(s.symbol)}>
               {busyThis && <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border border-accent-blue border-t-transparent rounded-full animate-spin" />}
@@ -1103,7 +1103,17 @@ const MarketSummary = memo(({ onSelect }: { onSelect: (s: string) => void }) => 
     return () => clearInterval(iv);
   }, []);
 
-  if (!stats) return null;
+  if (!stats) return (
+    <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden p-6 text-center">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-10 h-10 rounded-full border-4 border-accent-blue/20 border-t-accent-blue animate-spin" />
+        <div className="space-y-2">
+          <div className="skeleton h-4 w-48 mx-auto rounded" />
+          <div className="skeleton h-3 w-32 mx-auto rounded opacity-50" />
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="bg-bg-card border border-border-subtle rounded-2xl overflow-hidden shadow-sm transition-all">
