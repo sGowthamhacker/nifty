@@ -32,7 +32,7 @@ export default function MarketDepthPanel() {
   const fmtVol = (v:number) => v>=1e9 ? `${(v/1e9).toFixed(1)}B` : v>=1e7 ? `${(v/1e7).toFixed(1)}Cr` : `${(v/1e5).toFixed(1)}L`;
 
   return (
-    <div className="bg-bg-card border border-border-subtle rounded-2xl p-4 space-y-3">
+    <div className="glass-card border border-border-subtle rounded-2xl p-4 sm:p-5 space-y-4 shadow-premium transition-all hover:border-accent-blue/20">
       <div className="flex items-center gap-2">
         <BarChart2 size={14} className="text-accent-blue"/>
         <h3 className="font-display font-600 text-text-primary text-sm">Market Breadth</h3>
@@ -41,10 +41,10 @@ export default function MarketDepthPanel() {
 
       {/* A/D bar */}
       <div>
-        <div className="flex h-3 rounded-full overflow-hidden gap-px">
-          <div className="bg-accent-green rounded-l-full transition-all duration-500" style={{width:`${(advances/50)*100}%`}}/>
-          <div className="bg-text-muted/30 transition-all duration-500" style={{width:`${(unchanged/50)*100}%`}}/>
-          <div className="bg-accent-red rounded-r-full transition-all duration-500" style={{width:`${(declines/50)*100}%`}}/>
+        <div className="flex h-3 rounded-full overflow-hidden bg-bg-elevated/30 border border-white/5 shadow-inner">
+          <div className="bg-gradient-to-r from-accent-green to-accent-green/70 rounded-l-full transition-all duration-700 ease-out" style={{width:`${(advances/50)*100}%`}}/>
+          <div className="bg-text-muted/10 transition-all duration-700 ease-out" style={{width:`${(unchanged/50)*100}%`}}/>
+          <div className="bg-gradient-to-l from-accent-red to-accent-red/70 rounded-r-full transition-all duration-700 ease-out" style={{width:`${(declines/50)*100}%`}}/>
         </div>
         <div className="flex justify-between mt-1.5 text-[10px] font-mono">
           <span className="text-accent-green font-600">▲ {advances} Adv</span>

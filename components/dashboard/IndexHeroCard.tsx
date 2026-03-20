@@ -70,7 +70,7 @@ export default function IndexHeroCard() {
     ? ((data.price - data.yearLow) / (data.yearHigh - data.yearLow)) * 100 : 50;
 
   if (!data) return (
-    <div className="bg-bg-card border border-border-subtle rounded-2xl p-5 space-y-3 animate-pulse">
+    <div className="glass-card border border-border-subtle rounded-2xl p-5 space-y-3 animate-pulse overflow-hidden">
       <div className="h-5 bg-bg-elevated rounded w-32"/>
       <div className="h-12 bg-bg-elevated rounded w-48"/>
       <div className="h-4 bg-bg-elevated rounded w-40"/>
@@ -93,10 +93,10 @@ export default function IndexHeroCard() {
 
   return (
     <div className={cn(
-      "bg-bg-card border rounded-2xl p-5 relative overflow-hidden transition-all duration-300",
+      "glass-card border rounded-2xl p-4 sm:p-5 relative overflow-hidden transition-all duration-300",
       isPos ? "border-accent-green/20" : "border-accent-red/20",
-      flash === "up"   && "ring-1 ring-accent-green/40",
-      flash === "down" && "ring-1 ring-accent-red/40",
+      flash === "up"   && "ring-1 ring-accent-green/40 shadow-[0_0_20px_rgba(0,212,170,0.1)]",
+      flash === "down" && "ring-1 ring-accent-red/40 shadow-[0_0_20px_rgba(255,77,106,0.1)]",
     )}>
       {/* Glossy Glow */}
       <div className={cn("absolute -top-20 -right-20 w-52 h-52 rounded-full blur-3xl opacity-10 pointer-events-none",
@@ -137,11 +137,11 @@ export default function IndexHeroCard() {
             )}
           </div>
 
-          <div className={cn("flex items-center gap-2 mt-2 font-mono font-900 text-xl",
+          <div className={cn("flex items-center gap-2 mt-2 font-mono font-900 text-lg sm:text-xl",
             isPos ? "text-accent-green" : "text-accent-red")}>
-            {isPos ? <ArrowUp size={20} strokeWidth={3}/> : <ArrowDown size={20} strokeWidth={3}/>}
+            {isPos ? <ArrowUp size={18} strokeWidth={3}/> : <ArrowDown size={18} strokeWidth={3}/>}
             <span>{isPos?"+":""}{fmtN(data.change)}</span>
-            <span className="opacity-70">({isPos?"+":""}{fmtN(data.changePercent)}%)</span>
+            <span className="opacity-70 text-base sm:text-lg">({isPos?"+":""}{fmtN(data.changePercent)}%)</span>
           </div>
         </div>
 
