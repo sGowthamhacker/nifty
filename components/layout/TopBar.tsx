@@ -47,15 +47,20 @@ export default function TopBar({ onToggleSidebar, isSidebarOpen }: TopBarProps) 
 
   return (
     <header className={cn(
-      "fixed top-0 right-0 h-11 bg-bg-secondary/95 backdrop-blur-sm border-b border-border-subtle z-[30] flex items-center px-4 gap-4 text-xs transition-all duration-200 ease-in-out left-0 lg:left-60"
+      "fixed top-0 right-0 h-11 bg-bg-secondary/95 backdrop-blur-sm border-b border-border-subtle z-[30] flex items-center px-4 gap-4 text-xs transition-all duration-200 ease-in-out left-0",
+      isSidebarOpen && "lg:left-60"
     )}>
-      {/* Menu Toggle — mobile only (sidebar always visible on desktop) */}
+      {/* Menu Toggle */}
       <button 
         onClick={onToggleSidebar}
-        className="lg:hidden p-1.5 -ml-1 text-text-muted hover:text-text-primary transition-all hover:bg-bg-elevated/50 rounded-lg active:scale-95 group"
-        title="Toggle Menu"
+        className="p-1.5 -ml-1 text-text-muted hover:text-text-primary transition-all hover:bg-bg-elevated/50 rounded-lg active:scale-95 group"
+        title={isSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
       >
-        <Menu size={18} className="group-hover:scale-110 transition-transform" />
+        {isSidebarOpen ? (
+          <PanelLeftClose size={18} className="group-hover:-translate-x-0.5 transition-transform" />
+        ) : (
+          <Menu size={18} className="group-hover:scale-110 transition-transform" />
+        )}
       </button>
 
       {/* Market status */}

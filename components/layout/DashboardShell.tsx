@@ -59,8 +59,11 @@ export default function DashboardShell({ children }: { children: React.ReactNode
       {/* TopBar */}
       <TopBar onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} isSidebarOpen={isSidebarOpen} />
 
-      {/* Main Content Area - always offset by sidebar width on desktop */}
-      <main className="lg:ml-60 transition-all duration-200 ease-in-out min-h-screen pt-11 flex flex-col">
+      {/* Main Content Area */}
+      <main className={cn(
+        "transition-all duration-200 ease-in-out min-h-screen pt-11 flex flex-col",
+        isSidebarOpen ? "lg:ml-60" : "ml-0"
+      )}>
         <div className="p-4 md:p-6 flex-1 min-w-0 max-w-full overflow-x-hidden">
           {children}
         </div>

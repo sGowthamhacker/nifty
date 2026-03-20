@@ -66,7 +66,7 @@ export function StockAscension() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none" style={{ clipPath: 'inset(0)' }}>
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40" />
       
       {particles.map((p) => (

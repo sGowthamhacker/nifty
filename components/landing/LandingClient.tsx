@@ -121,7 +121,7 @@ export function LandingClient({ session }: { session: any }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#07090D] selection:bg-accent-blue selection:text-white">
+    <div className="min-h-screen bg-[#07090D] selection:bg-accent-blue selection:text-white overflow-x-hidden">
       {/* Dynamic Immersive Background */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.15),transparent_70%)]" />

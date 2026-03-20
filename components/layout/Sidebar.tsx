@@ -133,7 +133,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <aside className={cn(
-      "fixed left-0 top-0 h-full w-60 bg-bg-secondary border-r border-border-subtle flex flex-col z-50 transition-transform duration-200 ease-in-out shadow-2xl lg:shadow-none lg:translate-x-0",
+      "fixed left-0 top-0 h-full w-60 bg-bg-secondary border-r border-border-subtle flex flex-col z-50 transition-transform duration-200 ease-in-out shadow-2xl lg:shadow-none",
       isOpen ? "translate-x-0" : "-translate-x-full"
     )}>
       {/* Logo & Close */}
@@ -239,7 +239,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </p>
           </div>
 
-          <form action="/api/auth/signout" method="post" className="shrink-0 ml-1 opacity-0 group-hover:opacity-100 transition-opacity lg:opacity-60 lg:hover:opacity-100">
+          <form action="/api/auth/signout" method="post" className="shrink-0 ml-1">
             <button type="submit" className="p-2 text-text-muted hover:text-accent-red hover:bg-accent-red/10 rounded-xl transition-all group/out" title="Sign out">
               <LogOut size={16} className="group-hover/out:translate-x-0.5 transition-transform" />
             </button>
