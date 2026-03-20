@@ -552,16 +552,16 @@ export default function AdvancedChartPage() {
           <div className="flex items-center gap-3 flex-1 min-w-0 flex-nowrap">
             <div className="flex items-center gap-2 shrink-0">
               {!showSearch ? (
-                <button 
-                  onClick={() => setShowSearch(true)}
-                  className="w-9 h-9 flex items-center justify-center rounded-xl border border-dashed border-border-default text-text-muted hover:text-text-primary hover:border-accent-blue/50 transition-all bg-bg-card/50 shrink-0 group"
-                  title="Compare symbols (+)"
-                >
-                  <Plus size={18} className="group-hover:rotate-90 transition-transform duration-300" />
-                </button>
+                  <button 
+                    onClick={() => setShowSearch(true)}
+                    className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-lg sm:rounded-xl border border-dashed border-border-default text-text-muted hover:text-text-primary hover:border-accent-blue/50 transition-all bg-bg-card/50 shrink-0 group"
+                    title="Compare symbols (+)"
+                  >
+                    <Plus size={16} className="group-hover:rotate-90 transition-transform duration-300 sm:size-18" />
+                  </button>
               ) : (
                 <div className="relative flex items-center animate-in fade-in slide-in-from-left-2 duration-200">
-                  <div className="flex items-center bg-bg-elevated border border-accent-blue/30 rounded-xl px-3 py-1.5 w-48 sm:w-64 focus-within:w-64 sm:focus-within:w-80 transition-all shadow-lg shadow-accent-blue/5">
+                  <div className="flex items-center bg-bg-elevated border border-accent-blue/30 rounded-lg sm:rounded-xl px-2 sm:px-3 py-1 sm:py-1.5 w-36 sm:w-64 focus-within:w-48 sm:focus-within:w-80 transition-all shadow-lg shadow-accent-blue/5">
                     <Search size={14} className="text-accent-blue shrink-0" />
                     <input 
                       autoFocus 
@@ -769,20 +769,22 @@ export default function AdvancedChartPage() {
           ) : mainStock ? (
             <div className="flex-1 flex flex-col gap-3 py-1 overflow-x-auto no-scrollbar">
               <div className="flex items-center gap-4 text-[11px] font-mono whitespace-nowrap">
-                <div className="flex items-center gap-1.5 bg-bg-elevated px-2 py-0.5 rounded border border-border-subtle/30 transition-all active:scale-95 cursor-default">
+                <div className="flex items-center gap-1.5 bg-bg-elevated px-2 py-0.5 rounded border border-border-subtle/30 transition-all active:scale-95 cursor-default shrink-0">
                   <span className="font-800 text-text-primary uppercase tracking-tighter">{optimisticSymbol}</span>
                   <span className="w-1 h-3 border-l border-border-subtle mx-0.5" />
                   <span className="text-text-secondary font-500 whitespace-nowrap">{mainStock.meta.longName}</span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 shrink-0">
                   <span className="font-800 text-text-primary tabular-nums text-sm">₹{mainStock.meta.price?.toLocaleString("en-IN", { minimumFractionDigits: 2 })}</span>
                   <div className={cn("flex items-center gap-1 font-800 px-1.5 py-0.5 rounded text-[10px]", isPos ? "bg-accent-green/10 text-accent-green" : "bg-accent-red/10 text-accent-red")}>
                     {isPos ? <ArrowUpRight size={10} /> : <ArrowDownRight size={10} />}
                     {isPos ? "+" : ""}{mainStock.meta.changePct?.toFixed(2)}%
                   </div>
                 </div>
-                <div className="h-4 w-[1px] bg-border-subtle/50 mx-1 hidden md:block" />
-                <div className="flex items-center gap-3 sm:gap-6 flex-nowrap text-[9px] sm:text-[10px] uppercase font-700 tracking-tight">
+              </div>
+
+              <div className="flex items-center gap-3 sm:gap-6 flex-nowrap overflow-x-auto no-scrollbar text-[9px] sm:text-[10px] uppercase font-700 tracking-tight pb-0.5">
+                <div className="h-4 w-[1px] bg-border-subtle/50 mx-1 hidden md:block shrink-0" />
                   <div className="flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">Prev Close</span>
                     <span className="text-text-secondary text-[10px] sm:text-[11px]">₹{mainStock.meta.prevClose?.toLocaleString("en-IN")}</span>
@@ -852,7 +854,6 @@ export default function AdvancedChartPage() {
                   )}
                 </div>
               </div>
-            </div>
           ) : <span className="text-text-muted text-[11px] font-mono">Hover for OHLCV data</span>}
           {isLoading && <div className="ml-auto flex items-center gap-1.5 text-[10px] font-mono text-text-muted"><div className="w-3 h-3 border border-accent-blue border-t-transparent rounded-full animate-spin" />Loading...</div>}
         </div>

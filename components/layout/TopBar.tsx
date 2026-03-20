@@ -101,7 +101,7 @@ export default function TopBar({ onToggleSidebar, isSidebarOpen }: TopBarProps) 
             The empty string default means server renders nothing here; client fills it in. */}
         <span
           suppressHydrationWarning
-          className="font-mono text-[10px] text-text-muted tabular-nums w-16 text-right"
+          className="font-mono text-[10px] text-text-muted tabular-nums w-16 text-right hidden sm:block"
         >
           {mounted ? istTime + " IST" : ""}
         </span>
