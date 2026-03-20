@@ -13,7 +13,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
   // Initialize and handle window resize for sidebar
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1024) {
+      if (window.innerWidth < 1280) {
         setIsSidebarOpen(false);
       } else {
         setIsSidebarOpen(true);
@@ -29,14 +29,14 @@ export default function DashboardShell({ children }: { children: React.ReactNode
 
   // Close sidebar when route changes on mobile
   useEffect(() => {
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 1280) {
       setIsSidebarOpen(false);
     }
   }, [pathname]);
 
   // Handle scroll lock when menu is open on mobile
   useEffect(() => {
-    if (isSidebarOpen && window.innerWidth < 1024) {
+    if (isSidebarOpen && window.innerWidth < 1280) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -48,7 +48,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
       {/* Sidebar Overlay (Mobile only) */}
       {isSidebarOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 xl:hidden transition-opacity duration-300"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
@@ -62,7 +62,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
       {/* Main Content Area */}
       <main className={cn(
         "transition-all duration-200 ease-in-out min-h-screen pt-11 flex flex-col",
-        isSidebarOpen ? "lg:ml-60" : "ml-0"
+        isSidebarOpen ? "xl:ml-60" : "ml-0"
       )}>
         <div className="p-4 md:p-6 flex-1 min-w-0 max-w-full overflow-x-hidden">
           {children}

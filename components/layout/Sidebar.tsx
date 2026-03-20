@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard, BarChart2, Star, Bell, Settings, Shield,
   LogOut, ChevronRight, TrendingUp, Newspaper, Filter,
-  Activity, LineChart, Grid3X3,
+  Activity, LineChart, Grid3X3, X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/lib/supabase";
@@ -133,7 +133,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <aside className={cn(
-      "fixed left-0 top-0 h-full w-60 bg-bg-secondary border-r border-border-subtle flex flex-col z-50 transition-transform duration-200 ease-in-out shadow-2xl lg:shadow-none",
+      "fixed left-0 top-0 h-full w-60 bg-bg-secondary border-r border-border-subtle flex flex-col z-50 transition-transform duration-200 ease-in-out shadow-2xl xl:shadow-none",
       isOpen ? "translate-x-0" : "-translate-x-full"
     )}>
       {/* Logo & Close */}
@@ -151,9 +151,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* Mobile Close Button */}
         <button 
           onClick={onClose}
-          className="lg:hidden p-2 text-text-muted hover:text-text-primary transition-colors"
+          className="xl:hidden p-2 text-text-muted hover:text-text-primary transition-colors"
         >
-          <ChevronRight className="rotate-180" size={18} />
+          <X size={18} />
         </button>
       </div>
 

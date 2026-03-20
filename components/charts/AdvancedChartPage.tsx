@@ -782,67 +782,67 @@ export default function AdvancedChartPage() {
                   </div>
                 </div>
                 <div className="h-4 w-[1px] bg-border-subtle/50 mx-1 hidden md:block" />
-                <div className="flex items-center gap-2 sm:gap-4 flex-wrap text-[9px] sm:text-[10px] uppercase font-700 tracking-tight">
-                  <div className="flex flex-col">
+                <div className="flex items-center gap-3 sm:gap-6 flex-nowrap text-[9px] sm:text-[10px] uppercase font-700 tracking-tight">
+                  <div className="flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">Prev Close</span>
                     <span className="text-text-secondary text-[10px] sm:text-[11px]">₹{mainStock.meta.prevClose?.toLocaleString("en-IN")}</span>
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">Open</span>
                     <span className="text-text-secondary text-[10px] sm:text-[11px]">₹{mainStock.meta.open?.toLocaleString("en-IN")}</span>
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">High</span>
                     <span className="text-accent-green text-[10px] sm:text-[11px]">₹{mainStock.meta.high?.toLocaleString("en-IN")}</span>
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">Low</span>
                     <span className="text-accent-red text-[10px] sm:text-[11px]">₹{mainStock.meta.low?.toLocaleString("en-IN")}</span>
                   </div>
-                  <div className="hidden sm:flex flex-col">
+                  <div className="hidden sm:flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">Volume (L)</span>
                     <span className="text-text-primary text-[11px]">{formatVolume(mainStock.meta.volume)}</span>
                   </div>
-                  <div className="hidden md:flex flex-col">
+                  <div className="hidden md:flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">Value (Cr)</span>
                     <span className="text-text-primary text-[11px]">{formatCurrency(mainStock.meta.totalTradedValue)}</span>
                   </div>
-                  <div className="hidden lg:flex flex-col">
+                  <div className="hidden md:flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">FFM. Cap (Lakh Cr)</span>
                     <span className="text-text-primary text-[11px]">{mainStock.meta.ffmc > 0 ? (mainStock.meta.ffmc / 100000).toFixed(2) : "--"}</span>
                   </div>
-                  <div className="hidden xl:flex flex-col">
+                  <div className="hidden lg:flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">P/E</span>
                     <span className="text-text-secondary text-[11px]">{mainStock.meta.pe > 0 ? mainStock.meta.pe.toFixed(2) : "--"}</span>
                   </div>
-                  <div className="hidden lg:flex flex-col">
+                  <div className="hidden md:flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">P/B</span>
                     <span className="text-text-secondary text-[11px]">{mainStock.meta.pb > 0 ? mainStock.meta.pb.toFixed(2) : "--"}</span>
                   </div>
-                  <div className="hidden xl:flex flex-col">
+                  <div className="hidden lg:flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">EPS</span>
                     <span className="text-text-secondary text-[11px]">{mainStock.meta.eps ? `₹${mainStock.meta.eps.toFixed(2)}` : "--"}</span>
                   </div>
-                  <div className="hidden sm:flex flex-col">
+                  <div className="hidden sm:flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">Avg Vol (L)</span>
                     <span className="text-text-primary text-[11px]">{formatVolume(mainStock.meta.avgVolume)}</span>
                   </div>
-                  <div className="hidden sm:flex flex-col">
+                  <div className="hidden sm:flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">52W High</span>
                     <span className="text-accent-green font-800 text-[10px] sm:text-[11px]">₹{mainStock.meta.high52?.toLocaleString("en-IN")}</span>
                   </div>
-                  <div className="hidden sm:flex flex-col">
+                  <div className="hidden sm:flex flex-col shrink-0">
                     <span className="text-text-muted text-[8px]">52W Low</span>
                     <span className="text-accent-red font-800 text-[10px] sm:text-[11px]">₹{mainStock.meta.low52?.toLocaleString("en-IN")}</span>
                   </div>
                   {mainStock.meta.targetPrice && (
-                    <div className="hidden 2xl:flex flex-col border-l border-border-subtle pl-4">
+                    <div className="hidden xl:flex flex-col shrink-0 border-l border-border-subtle pl-4">
                       <span className="text-text-muted text-[8px]">Analyst Target</span>
                       <span className="text-accent-blue font-800 text-[11px]">₹{mainStock.meta.targetPrice.toLocaleString("en-IN")}</span>
                     </div>
                   )}
                   {mainStock.meta.recommendation && mainStock.meta.recommendation !== "none" && (
-                    <div className="hidden 2xl:flex flex-col">
+                    <div className="hidden xl:flex flex-col shrink-0">
                       <span className="text-text-muted text-[8px]">Sentiment</span>
                       <span className={cn("font-900 text-[10px] uppercase tracking-tighter px-1.5 py-0.5 rounded",
                         mainStock.meta.recommendation.includes("buy") ? "bg-accent-green/20 text-accent-green" : "bg-accent-amber/20 text-accent-amber")}>

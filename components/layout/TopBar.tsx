@@ -48,7 +48,7 @@ export default function TopBar({ onToggleSidebar, isSidebarOpen }: TopBarProps) 
   return (
     <header className={cn(
       "fixed top-0 right-0 h-11 bg-bg-secondary/95 backdrop-blur-sm border-b border-border-subtle z-[30] flex items-center px-4 gap-4 text-xs transition-all duration-200 ease-in-out left-0",
-      isSidebarOpen && "lg:left-60"
+      isSidebarOpen && "xl:left-60"
     )}>
       {/* Menu Toggle */}
       <button 
