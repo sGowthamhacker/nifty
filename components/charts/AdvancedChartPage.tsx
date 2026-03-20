@@ -548,8 +548,8 @@ export default function AdvancedChartPage() {
           isLoading ? "scale-x-100 opacity-100 animate-pulse" : "scale-x-0 opacity-0")} />
 
         {/* toolbar */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-border-subtle gap-4 overflow-visible">
-          <div className="flex items-center gap-3 flex-1 min-w-0">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border-subtle gap-4 overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-3 flex-1 min-w-0 flex-nowrap">
             <div className="flex items-center gap-2 shrink-0">
               {!showSearch ? (
                 <button 
@@ -684,12 +684,12 @@ export default function AdvancedChartPage() {
               )}
             </div>
           </div>
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-3 shrink-0 flex-nowrap ml-auto">
             {/* Chart Type Dropdown */}
             <div className="relative">
               <button 
                 onClick={() => setShowTypeMenu(!showTypeMenu)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-bg-elevated border border-border-subtle text-text-primary hover:border-accent-blue/50 transition-all text-xs font-mono group"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-bg-elevated border border-border-subtle text-text-primary hover:border-accent-blue/50 transition-all text-xs font-mono group shrink-0"
               >
                 <LineChart size={14} className="text-accent-blue group-hover:scale-110 transition-transform" />
                 <span className="font-600">{CHART_TYPES.find(ct => ct.id === chartType)?.label}</span>
