@@ -123,14 +123,16 @@ export function LandingClient({ session }: { session: any }) {
   return (
     <div className="min-h-screen bg-[#07090D] selection:bg-accent-blue selection:text-white overflow-x-hidden">
       {/* Dynamic Immersive Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+      <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.15),transparent_70%)]" />
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent-blue/10 blur-[120px] rounded-full animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-green/5 blur-[120px] rounded-full animate-pulse delay-1000" />
         <div className="absolute inset-0 bg-grid-pattern bg-[size:32px_32px] opacity-[0.12] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
       </div>
 
-      <StockAscension />
+      <div className="fixed inset-0 z-[-1] pointer-events-none opacity-50">
+        <StockAscension />
+      </div>
 
       {/* Hero Navbar Overlay */}
       <nav className="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 border-b border-white/5 bg-black/20 backdrop-blur-2xl">
@@ -148,7 +150,7 @@ export function LandingClient({ session }: { session: any }) {
             </div>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-10 text-[13px] font-700 text-white/60 tracking-wide uppercase">
+          <div className="hidden xl:flex items-center gap-10 text-[13px] font-700 text-white/60 tracking-wide uppercase">
             <a href="#features" className="hover:text-white transition-all hover:tracking-widest">Ecosystem</a>
             <a href="#pricing" className="hover:text-white transition-all hover:tracking-widest">Pricing</a>
             <a href="https://htwth.vercel.app/" target="_blank" className="hover:text-accent-blue transition-all flex items-center gap-1.5">
@@ -177,16 +179,16 @@ export function LandingClient({ session }: { session: any }) {
 
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-white active:scale-90 transition-transform"
+              className="xl:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-white active:scale-90 transition-transform"
             >
-              {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu Drawer */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-white/5 bg-black/80 backdrop-blur-2xl">
+          <div className="xl:hidden border-t border-white/5 bg-black/80 backdrop-blur-2xl">
             <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
               <a href="#features" onClick={() => setIsMenuOpen(false)} className="px-4 py-3 rounded-xl text-sm font-700 text-white/70 hover:text-white hover:bg-white/5 transition-all">Ecosystem</a>
               <a href="#pricing" onClick={() => setIsMenuOpen(false)} className="px-4 py-3 rounded-xl text-sm font-700 text-white/70 hover:text-white hover:bg-white/5 transition-all">Pricing</a>

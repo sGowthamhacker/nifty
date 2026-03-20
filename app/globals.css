@@ -240,7 +240,91 @@ body {
   scrollbar-width: none;
 }
 
-/* Fullscreen Chart Overrides */
+/* ─── FULL DEVICE RESPONSIVE ENGINE ─────────────────────── */
+
+/* 1. Global Reset for Horizontal Overflows */
+html, body {
+  width: 100%;
+  overflow-x: hidden !important;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* 2. Anchor Scroll Padding */
+html {
+  scroll-padding-top: 85px;
+}
+
+/* 3. Small Mobile (iPhone SE, etc.) [320px - 480px] */
+@media screen and (max-width: 480px) {
+  :root {
+    --card-padding: 12px;
+  }
+  h1 { font-size: 1.75rem !important; }
+  h2 { font-size: 1.25rem !important; }
+  .dashboard-grid { grid-template-columns: 1fr !important; }
+}
+
+/* 4. Large Mobile & High-Res (CMF Phone 1, Pixel, iPhone Pro Max) [481px - 1023px] */
+@media screen and (max-width: 1023px) {
+  /* Ensure charts have minimum usable height */
+  .chart-container-main {
+    height: 400px !important;
+    min-height: 400px !important;
+  }
+  
+  /* Compact headers for mobile */
+  .technical-stats-row {
+    gap: 12px !important;
+    padding-bottom: 8px !important;
+  }
+}
+
+/* 5. Tablet & Small Laptop (CMF Landscape / iPad) [1024px - 1279px] */
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  /* In this range, we still use COLLAPSED sidebar for better chart space */
+  .main-content-layout {
+    margin-left: 0 !important;
+  }
+  .top-bar-layout {
+    left: 0 !important;
+  }
+}
+
+/* 6. Desktop Mode [1280px+] */
+@media screen and (min-width: 1280px) {
+  .desktop-only { display: block !important; }
+  .mobile-only { display: none !important; }
+}
+
+/* 7. Landscape Mobile Fix (iPhone / Android) */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .chart-container-main {
+    height: calc(100vh - 80px) !important;
+  }
+  header {
+    height: 36px !important;
+  }
+  .hide-on-landscape {
+    display: none !important;
+  }
+}
+
+/* 8. Extra Deep Fix for Horizontal Navigation Scrollers */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;            /* Chrome, Safari and Opera */
+}
+
+/* 9. Skeleton Scaling for High-Res */
+.skeleton {
+  background-size: 200% 100%;
+}
+
+/* 10. Fullscreen Chart Overrides */
 body.chart-fullscreen aside,
 body.chart-fullscreen header {
   opacity: 0 !important;
