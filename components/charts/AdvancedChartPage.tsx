@@ -1120,7 +1120,7 @@ const MarketSummary = memo(({ onSelect }: { onSelect: (s: string) => void }) => 
       <div className="flex flex-wrap items-center justify-between px-4 py-3 border-b border-border-subtle bg-bg-secondary/20 gap-3">
         <div className="flex items-center gap-6">
           <h3 className="text-xs font-800 uppercase tracking-widest text-text-muted">Market Pulse</h3>
-          <div className="flex bg-bg-elevated rounded-lg p-1 gap-1">
+          <div className="flex bg-bg-elevated rounded-lg p-1 gap-1 overflow-x-auto no-scrollbar flex-nowrap">
             {[
               { id: "gainers", label: "Gainers" },
               { id: "losers", label: "Losers" },
@@ -1131,7 +1131,7 @@ const MarketSummary = memo(({ onSelect }: { onSelect: (s: string) => void }) => 
             ].map(t => (
               <button key={t.id}
                 onClick={() => setTab(t.id as any)}
-                className={cn("px-2.5 py-1 rounded text-[10px] font-800 uppercase tracking-tighter transition-all",
+                className={cn("px-2.5 py-1 rounded text-[10px] font-800 uppercase tracking-tighter transition-all shrink-0 whitespace-nowrap",
                   tab === t.id ? "bg-accent-blue text-white shadow-sm" : "text-text-muted hover:text-text-primary")}>
                 {t.label}
               </button>

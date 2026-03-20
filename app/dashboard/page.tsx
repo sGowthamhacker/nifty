@@ -11,22 +11,22 @@ export default function DashboardPage() {
   return (
     <div className="space-y-5 animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <div>
+      <div className="flex items-center justify-between gap-3 overflow-x-auto no-scrollbar flex-nowrap pb-1">
+        <div className="shrink-0 min-w-0">
           <h1 className="font-display font-800 text-2xl text-text-primary tracking-tight">Market Overview</h1>
           <p className="text-text-muted text-sm mt-0.5">NIFTY 50 · NSE India · Live data updates every 1s</p>
         </div>
-        <div className="flex items-center gap-2 flex-wrap">
-          <Link href="/indices" className="flex items-center gap-1.5 bg-accent-green/10 border border-accent-green/30 text-accent-green hover:bg-accent-green/20 px-3 py-1.5 rounded-xl text-xs font-mono font-600 transition-all">
+        <div className="flex items-center gap-2 flex-nowrap shrink-0 ml-auto">
+          <Link href="/indices" className="flex items-center gap-1.5 bg-accent-green/10 border border-accent-green/30 text-accent-green hover:bg-accent-green/20 px-3 py-1.5 rounded-xl text-xs font-mono font-600 transition-all shrink-0 whitespace-nowrap">
             <Activity size={12}/> Indices
           </Link>
-          <Link href="/charts" className="flex items-center gap-1.5 bg-accent-blue/10 border border-accent-blue/30 text-accent-blue hover:bg-accent-blue/20 px-3 py-1.5 rounded-xl text-xs font-mono font-600 transition-all">
+          <Link href="/charts" className="flex items-center gap-1.5 bg-accent-blue/10 border border-accent-blue/30 text-accent-blue hover:bg-accent-blue/20 px-3 py-1.5 rounded-xl text-xs font-mono font-600 transition-all shrink-0 whitespace-nowrap">
             <LineChart size={12}/> Live Charts
           </Link>
-          <Link href="/screener" className="flex items-center gap-1.5 bg-bg-card border border-border-subtle text-text-secondary hover:text-text-primary px-3 py-1.5 rounded-xl text-xs font-mono transition-all">
+          <Link href="/screener" className="flex items-center gap-1.5 bg-bg-card border border-border-subtle text-text-secondary hover:text-text-primary px-3 py-1.5 rounded-xl text-xs font-mono transition-all shrink-0 whitespace-nowrap">
             <Filter size={12}/> Screener
           </Link>
-          <Link href="/news" className="flex items-center gap-1.5 bg-bg-card border border-border-subtle text-text-secondary hover:text-text-primary px-3 py-1.5 rounded-xl text-xs font-mono transition-all">
+          <Link href="/news" className="flex items-center gap-1.5 bg-bg-card border border-border-subtle text-text-secondary hover:text-text-primary px-3 py-1.5 rounded-xl text-xs font-mono transition-all shrink-0 whitespace-nowrap">
             <Newspaper size={12}/> News
           </Link>
         </div>
